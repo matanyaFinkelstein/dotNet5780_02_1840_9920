@@ -29,17 +29,26 @@ namespace dotNet5780_02_1840_9920
         {
             IsApproved = _IsApproved;
         }
-        public string GetIsApproved(string EntryDate)
+        public string GetEntryDate()
         {
             return EntryDate;
         }
-        public string GetReleaseDate(string ReleaseDate)
+        public string GetReleaseDate()
         {
             return ReleaseDate;
         }
-        public bool GetIsApproved(bool IsApproved)
+        public bool GetIsApproved()
         {
             return IsApproved;
+        }
+        public void ToString()
+        {
+            Console.WriteLine("The entry date: {0}", GetEntryDate());
+            Console.WriteLine("The release date: {0}", GetReleaseDate());
+            if (GetIsApproved())
+                Console.WriteLine("The request was accepted");
+            else
+                Console.WriteLine("The request was rejected");
         }
     }
 }
