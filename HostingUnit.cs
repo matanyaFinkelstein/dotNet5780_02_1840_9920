@@ -10,7 +10,7 @@ namespace dotNet5780_02_1840_9920
     {
         private static int stSerialKey;
         int HostingUnitKey;
-        bool[,] Diary;
+        bool [,]Diary;
         public HostingUnit()
         {
             Diary = new bool[12, 31];
@@ -25,8 +25,8 @@ namespace dotNet5780_02_1840_9920
         }
         public void ToString()
         {
-            Console.WriteLine("the host unit key: {0}", HostingUnitKey);
-            bool firstDay = false;
+             Console.WriteLine("the host unit key: {0}", HostingUnitKey);
+           bool firstDay = false;
 
             for (int i = 0; i < 12; i++)
             {
