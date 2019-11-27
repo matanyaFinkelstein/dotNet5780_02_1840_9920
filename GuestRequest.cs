@@ -8,9 +8,13 @@ namespace dotNet5780_02_1840_9920
 {
     class GuestRequest
     {
-        public string EntryDate;
-        public string ReleaseDate;
-        public bool IsApproved;
+        public string EntryDate_GSett { get { return EntryDate; } set { EntryDate = value; } }
+        public string ReleaseDate_GSet { get { return ReleaseDate; } set { ReleaseDate = value; } }
+        public bool IsApproved_GSet { get { return IsApproved; } set { IsApproved = value; } }
+
+        private string EntryDate;
+        private string ReleaseDate;
+        private bool IsApproved;
         public GuestRequest()
         {
             EntryDate = null;

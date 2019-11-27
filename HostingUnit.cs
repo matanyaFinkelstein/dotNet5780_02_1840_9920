@@ -8,25 +8,15 @@ namespace dotNet5780_02_1840_9920
 {
     class HostingUnit
     {
+        public int stSerialKey_GSet { private get { return stSerialKey; } private set{ stSerialKey = value;} }
         private static int stSerialKey;
-        int HostingUnitKey;
-        bool [,]Diary;
-        public HostingUnit()
-        {
-            Diary = new bool[12, 31];
-        }
-        private void setHostingUnitKey(int _HostingUnitKey)
-        {
-            HostingUnitKey = _HostingUnitKey;
-        }
-        public int getHostingUnitKey()
-        {
-            return HostingUnitKey;
-        }
+        private int HostingUnitKey;
+        private bool[,] Diary;
+        
         public void ToString()
         {
-             Console.WriteLine("the host unit key: {0}", HostingUnitKey);
-           bool firstDay = false;
+            Console.WriteLine("the host unit key: {0}", HostingUnitKey);
+            bool firstDay = false;
 
             for (int i = 0; i < 12; i++)
             {

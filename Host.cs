@@ -10,17 +10,17 @@ namespace dotNet5780_02_1840_9920
 {
     class Host
     {
+        public List<HostingUnit> HostUC_GSet { get { return HostingUnitCollection; } private set { HostingUnitCollection = new List<HostingUnit>(value); } }
         public int HostKey;
         private List<HostingUnit> HostingUnitCollection;
-        public Host(int _HostKey, List<HostingUnit> _HostingUnitCollection, int size)
+        public Host(int _HostKey, int size)
         {
             HostKey = _HostKey;
-
+            HostingUnitCollection = new List<HostingUnit>(size);
+            foreach(HostingUnit host_u in HostingUnitCollection)
+            host_u.
         }
-        private void SetHostingUnitCollection(List<HostingUnit> _HostingUnitCollection)
-        {
-            HostingUnitCollection = _HostingUnitCollection;
-        }
+       
         public List<HostingUnit> GetHostingUnitCollection()
         {
             return HostingUnitCollection;
