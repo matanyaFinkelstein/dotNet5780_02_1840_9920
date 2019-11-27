@@ -37,11 +37,12 @@ namespace dotNet5780_02_1840_9920
         {
             foreach(HostingUnit host_u in HostingUnitCollection)
             {
-                if(host_u.ApproveRequest)
+                if(host_u.ApproveRequest(guestReq))
                 {
                     return host_u.HostingUnitKey_GSet;
                 }
             }
+            return -1;
         }
     }
 }
