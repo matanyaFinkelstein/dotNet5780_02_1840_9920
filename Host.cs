@@ -10,20 +10,38 @@ namespace dotNet5780_02_1840_9920
 {
     class Host
     {
-        public List<HostingUnit> HostUC_GSet { get { return HostingUnitCollection; } private set { HostingUnitCollection = new List<HostingUnit>(value); } }
-        public int HostKey;
+        private int HostKey;
         private List<HostingUnit> HostingUnitCollection;
-        public Host(int _HostKey, int size)
+
+        public int HostKey_GSet { get { return HostKey; } set { HostKey = value; } }
+        public List<HostingUnit> HostingUnitCollection_GSet { get { return HostingUnitCollection; } private set { HostingUnitCollection = new List<HostingUnit>(value); } }
+
+        Host(int _HostKey, int size)
         {
             HostKey = _HostKey;
             HostingUnitCollection = new List<HostingUnit>(size);
-            foreach(HostingUnit host_u in HostingUnitCollection)
-            host_u.
+            foreach (HostingUnit host_u in HostingUnitCollection)
+                for (int i = 0; i < 12; i++)
+                    for (int j = 0; j < 31; j++)
+                        host_u.Diary_GSet[i, j] = false;
         }
-       
-        public List<HostingUnit> GetHostingUnitCollection()
+        public void ToString()
         {
-            return HostingUnitCollection;
+            Console.WriteLine("the ID of the host is: {0}", HostKey);
+            foreach(HostingUnit host_u in HostingUnitCollection)
+            {
+                host_u.ToString();
+            }
+        }
+        private long SubmitRequest(GuestRequest guestReq)
+        {
+            foreach(HostingUnit host_u in HostingUnitCollection)
+            {
+                if(host_u.ApproveRequest)
+                {
+                    return host_u.HostingUnitKey_GSet;
+                }
+            }
         }
     }
 }

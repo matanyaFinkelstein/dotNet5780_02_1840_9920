@@ -8,11 +8,14 @@ namespace dotNet5780_02_1840_9920
 {
     class HostingUnit
     {
-        public int stSerialKey_GSet { private get { return stSerialKey; } private set{ stSerialKey = value;} }
         private static int stSerialKey;
         private int HostingUnitKey;
         private bool[,] Diary;
-        
+        private static int stSerialKey_GSet {  get { return stSerialKey; }  set { stSerialKey = value; } }
+        public int HostingUnitKey_GSet { get {return HostingUnitKey; } private set { HostingUnitKey = value; } }
+        public bool[,] Diary_GSet { get { return Diary; } set { Diary = value; } }
+
+
         public void ToString()
         {
             Console.WriteLine("the host unit key: {0}", HostingUnitKey);
@@ -41,11 +44,11 @@ namespace dotNet5780_02_1840_9920
         }
         public bool ApproveRequest(GuestRequest guestReq)
         {
-            String[] s = guestReq.EntryDate.Split(new char[] { '.', '/' }); // in case we put in the date like this: xx.yy xx/yy
+            String[] s = guestReq.EntryDate_GSet.Split(new char[] { '.', '/' }); // in case we put in the date like this: xx.yy xx/yy
             int day = Convert.ToInt32(s[0]); // the first part was the days
             int month = Convert.ToInt32(s[1]); // the second part was the months
 
-            s = guestReq.ReleaseDate.Split(new char[] { '.', '/' }); // in case we put in the date like this: xx.yy xx/yy
+            s = guestReq.ReleaseDate_GSet.Split(new char[] { '.', '/' }); // in case we put in the date like this: xx.yy xx/yy
             int day1 = Convert.ToInt32(s[0]); // the first part was the days
             int month1 = Convert.ToInt32(s[1]); // the second part was the months
 
