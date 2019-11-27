@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace dotNet5780_02_1840_9920
 {
-    class HostingUnit
+        public interface IComparable
+        {
+            int CompareTo(object obj);
+        }
+    class HostingUnit : IComparable
     {
         private static int stSerialKey;
         private int HostingUnitKey;
@@ -15,8 +19,12 @@ namespace dotNet5780_02_1840_9920
         public int HostingUnitKey_GSet { get {return HostingUnitKey; } private set { HostingUnitKey = value; } }
         public bool[,] Diary_GSet { get { return Diary; } set { Diary = value; } }
 
+        public int CompareTo(object obj)
+        {
+            return GetAnnualBusyPercentage().CompareTo(((HostingUnit)obj).GetAnnualBusyPercentage());
+        }
 
-        public void ToString()
+        public override string ToString()
         {
             Console.WriteLine("the host unit key: {0}", HostingUnitKey);
             bool firstDay = false;
@@ -40,7 +48,7 @@ namespace dotNet5780_02_1840_9920
                     }
                 }
             }
-
+            return null;
         }
         public bool ApproveRequest(GuestRequest guestReq)
         {

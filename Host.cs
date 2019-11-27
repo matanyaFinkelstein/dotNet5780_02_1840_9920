@@ -25,13 +25,14 @@ namespace dotNet5780_02_1840_9920
                     for (int j = 0; j < 31; j++)
                         host_u.Diary_GSet[i, j] = false;
         }
-        public void ToString()
+        public override string ToString()
         {
             Console.WriteLine("the ID of the host is: {0}", HostKey);
             foreach(HostingUnit host_u in HostingUnitCollection)
             {
                 host_u.ToString();
             }
+            return null;
         }
         private long SubmitRequest(GuestRequest guestReq)
         {
@@ -44,5 +45,38 @@ namespace dotNet5780_02_1840_9920
             }
             return -1;
         }
+        public int GetHostAnnualBusyDays()
+        {
+            int counter = 0;
+            foreach (HostingUnit host_u in HostingUnitCollection)
+            {
+                counter += host_u.GetAnnualBusyDays();
+            }
+            return counter;
+        }
+        public void SortUnits()
+        {
+            HostingUnitCollection.Sort();
+        }
+        public bool AssignRequests(params GuestRequest[] guestReq)
+        {
+            bool flag;
+            for (int i = 0; i < guestReq.Length; i++)
+            {
+                flag = false;
+                foreach(HostingUnit host_u in HostingUnitCollection)
+                {
+                    if (host_u.ApproveRequest(guestReq[i]))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                    return false;
+            }
+            return true;
+        }
+
     }
 }

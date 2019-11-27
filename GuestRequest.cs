@@ -23,7 +23,7 @@ namespace dotNet5780_02_1840_9920
             IsApproved = false;
         }
         */
-        public void ToString()
+        public override string ToString()
         {
             Console.WriteLine("The entry date: {0}", EntryDate);
             Console.WriteLine("The release date: {0}", ReleaseDate);
@@ -31,6 +31,7 @@ namespace dotNet5780_02_1840_9920
                 Console.WriteLine("The request was accepted");
             else
                 Console.WriteLine("The request was rejected");
+            return null;
         }
     }
 }
