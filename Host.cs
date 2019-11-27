@@ -28,7 +28,7 @@ namespace dotNet5780_02_1840_9920
         public override string ToString()
         {
             Console.WriteLine("the ID of the host is: {0}", HostKey);
-            foreach(HostingUnit host_u in HostingUnitCollection)
+            foreach (HostingUnit host_u in HostingUnitCollection)
             {
                 host_u.ToString();
             }
@@ -36,9 +36,9 @@ namespace dotNet5780_02_1840_9920
         }
         private long SubmitRequest(GuestRequest guestReq)
         {
-            foreach(HostingUnit host_u in HostingUnitCollection)
+            foreach (HostingUnit host_u in HostingUnitCollection)
             {
-                if(host_u.ApproveRequest(guestReq))
+                if (host_u.ApproveRequest(guestReq))
                 {
                     return host_u.HostingUnitKey_GSet;
                 }
@@ -60,22 +60,13 @@ namespace dotNet5780_02_1840_9920
         }
         public bool AssignRequests(params GuestRequest[] guestReq)
         {
-            bool flag;
-            for (int i = 0; i < guestReq.Length; i++)
+            bool res = true;
+            foreach (GuestRequest guest_r in guestReq)
             {
-                flag = false;
-                foreach(HostingUnit host_u in HostingUnitCollection)
-                {
-                    if (host_u.ApproveRequest(guestReq[i]))
-                    {
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag)
-                    return false;
+                if (SubmitRequest(guest_r) == -1)
+                    res = false;
             }
-            return true;
+            return res;
         }
 
     }
