@@ -16,11 +16,11 @@ namespace dotNet5780_02_1840_9920
         public int HostKey_GSet { get { return HostKey; } set { HostKey = value; } }
         public List<HostingUnit> HostingUnitCollection_GSet { get { return HostingUnitCollection; } private set { HostingUnitCollection = new List<HostingUnit>(value); } }
 
-        Host(int _HostKey, int size)
+        Host(int _HostKey, int size) // constractor
         {
-            HostKey = _HostKey;
+            HostKey = _HostKey; 
             HostingUnitCollection = new List<HostingUnit>(size);
-            foreach (HostingUnit host_u in HostingUnitCollection)
+            foreach (HostingUnit host_u in HostingUnitCollection) // to initialize all of the HostingUnits with false
                 for (int i = 0; i < 12; i++)
                     for (int j = 0; j < 31; j++)
                         host_u.Diary_GSet[i, j] = false;
@@ -36,34 +36,35 @@ namespace dotNet5780_02_1840_9920
         }
         private long SubmitRequest(GuestRequest guestReq)
         {
-            foreach (HostingUnit host_u in HostingUnitCollection)
+            foreach (HostingUnit host_u in HostingUnitCollection) 
             {
-                if (host_u.ApproveRequest(guestReq))
+                if (host_u.ApproveRequest(guestReq)) // if the request had accepted
                 {
-                    return host_u.HostingUnitKey_GSet;
+                    return host_u.HostingUnitKey_GSet; // return the key of the HostingUnit that accepted the request
                 }
             }
-            return -1;
+            return -1; // if none of the HostingUnit accepted the request return -1
         }
         public int GetHostAnnualBusyDays()
         {
             int counter = 0;
             foreach (HostingUnit host_u in HostingUnitCollection)
             {
+                // add to the counter the number of all of the nights that full in this HostingUnit
                 counter += host_u.GetAnnualBusyDays();
             }
-            return counter;
+            return counter; // return the number of the nights that full in the whole HostingUnitCollection
         }
         public void SortUnits()
         {
-            HostingUnitCollection.Sort();
+            HostingUnitCollection.Sort(); // sort the HostingUnitCollection by the sum of the full nights 
         }
         public bool AssignRequests(params GuestRequest[] guestReq)
         {
             bool res = true;
             foreach (GuestRequest guest_r in guestReq)
             {
-                if (SubmitRequest(guest_r) == -1)
+                if (SubmitRequest(guest_r) == -1) // if none of the HostingUnits can accept tyhe request
                     res = false;
             }
             return res;

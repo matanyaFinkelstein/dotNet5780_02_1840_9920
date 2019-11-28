@@ -15,14 +15,7 @@ namespace dotNet5780_02_1840_9920
         public string EntryDate_GSet { get { return EntryDate; } set { EntryDate = value; } }
         public string ReleaseDate_GSet { get { return ReleaseDate; } set { ReleaseDate = value; } }
         public bool IsApproved_GSet { get { return IsApproved; } set { IsApproved = value; } }
-        /*
-        GuestRequest()
-        {
-            EntryDate = null;
-            ReleaseDate = null;
-            IsApproved = false;
-        }
-        */
+       
         public override string ToString()
         {
             Console.WriteLine("The entry date: {0}", EntryDate);
